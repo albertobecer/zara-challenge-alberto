@@ -21,9 +21,9 @@ function App() {
       </div>
       <h1>Vite + React + {vitevar}</h1>
       <Routes>
-        <Route path="/character" element={<Character />} />
+        <Route path="/character/:id" element={<Character />} />
       </Routes>
-      <Link to="character">Personaje</Link>
+      <Link to="character/1">Personaje</Link>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
