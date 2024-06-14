@@ -1,23 +1,31 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+
+interface Character {
+          id: number;
+          name: string;
+          imageUrl: string;
+      }
+
 interface FavoritesContextType {
-    favorites: Set<number>;
-    toggleFavorite: (id: number) => void;
+    favorites: Set<Character>;
+    toggleFavorite: (character: Character) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [favorites, setFavorites] = useState<Set<number>>(new Set());
+    const [favorites, setFavorites] = useState<Set<Character>>(new Set());
 
-    const toggleFavorite = (id: number) => {
+    const toggleFavorite = (character: Character) => {
         setFavorites((prevFavorites) => {
             const newFavorites = new Set(prevFavorites);
-            if (newFavorites.has(id)) {
-                newFavorites.delete(id);
-            } else {
-                newFavorites.add(id);
-            }
+            const existingFavorite = Array.from(newFavorites).find(fav => fav.id === character.id);
+            if (existingFavorite) {
+                    newFavorites.delete(existingFavorite);
+                } else {
+                    newFavorites.add(character);
+                }
             return newFavorites;
         });
     };

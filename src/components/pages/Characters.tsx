@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 interface Character {
           id: number;
           name: string;
+          imageUrl: string;
 }
 
 interface ApiResponse {
@@ -32,7 +33,7 @@ const Characters: React.FC = () => {
                                         .includes(q.toLowerCase())
                               );
                               });
-                              const isFavorite = favorites.has(item.id);
+                              const isFavorite = Array.from(favorites).some(fav => fav.id === item.id);
                               return matchesSearch && (!filterFavorites || isFavorite);
                     });
            }
@@ -58,8 +59,8 @@ const Characters: React.FC = () => {
                                         {data && data.results && search(data.results).map((character: Character) => (
                                                   <li key={character.id}>
                                                             <Link to={`/character/${character.id}`}>{character.name}</Link>
-                                                            <button onClick={() => toggleFavorite(character.id)}>
-                                                                      {favorites.has(character.id) ? 'Unfavorite' : 'Favorite'}
+                                                            <button onClick={() => toggleFavorite(character)}>
+                                                                      {Array.from(favorites).some(fav => fav.id === character.id) ? 'Unfavorite' : 'Favorite'}
                                                             </button>
                                                   </li>
                                         ))}
