@@ -21,6 +21,8 @@ const Characters: React.FC = () => {
           const [q, setQ] = useState<string>("");
           const [filterFavorites, setFilterFavorites] = useState<boolean>(false);
           const [params, setParams] = useState<Record<string, string>>({});
+          const [filteredResults, setFilteredResults] = useState<Character[]>([]);
+
 
           const { loading, error, data } = useFetch<ApiResponse>(VITE_ENDPOINT_CHARACTERS, params);
 
@@ -31,6 +33,20 @@ const Characters: React.FC = () => {
                               setParams({});
                     }
           }, [q]);
+
+          useEffect(() => {
+                    if (data && data.results) {
+                              let results = data.results;
+                              if (filterFavorites) {
+                                        results = results.filter(character => Array.from(favorites).some(fav => fav.id === character.id));
+                              }
+                              setFilteredResults(searchFavorites(results, q));
+                    } else if (filterFavorites) {
+                              setFilteredResults(searchFavorites(Array.from(favorites), q));
+                    } else {
+                              setFilteredResults([]);
+                    }
+          }, [data, q, filterFavorites, favorites]);
 
           const searchFavorites = (items: Character[], query: string): Character[] => {
                     return items.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
@@ -50,29 +66,21 @@ const Characters: React.FC = () => {
                                         checked={filterFavorites}
                                         onChange={() => setFilterFavorites(!filterFavorites)}
                               />
+                              <p>RESULTADOS: {filteredResults.length}</p>
                               {loading && <p>Loading...</p>}
                               {error && <p>Error: {error.message}</p>}
                               <br />
                               <ul>
-                                        {data && data.results && (filterFavorites
-                                                  ? searchFavorites(Array.from(favorites), q).map((character: Character) => (
-                                                            <li key={character.id}>
-                                                                      <Link to={`/character/${character.id}`}>{character.name}</Link>
-                                                                      <button onClick={() => toggleFavorite(character)}>
-                                                                                {Array.from(favorites).some(fav => fav.id === character.id) ? 'Unfavorite' : 'Favorite'}
-                                                                      </button>
-                                                            </li>
-                                                  ))
-                                                  : searchFavorites(data.results, q).map((character: Character) => (
-                                                            <li key={character.id}>
-                                                                      <Link to={`/character/${character.id}`}>{character.name}</Link>
-                                                                      <button onClick={() => toggleFavorite(character)}>
-                                                                                {Array.from(favorites).some(fav => fav.id === character.id) ? 'Unfavorite' : 'Favorite'}
-                                                                      </button>
-                                                            </li>
-                                                  )))
-                                        }
+                                        {filteredResults.map((character: Character) => (
+                                                  <li key={character.id}>
+                                                            <Link to={`/character/${character.id}`}>{character.name}</Link>
+                                                            <button onClick={() => toggleFavorite(character)}>
+                                                                      {Array.from(favorites).some(fav => fav.id === character.id) ? 'Unfavorite' : 'Favorite'}
+                                                            </button>
+                                                  </li>
+                                        ))}
                               </ul>
+
                     </>
           );
 };
