@@ -66,6 +66,7 @@ const Characters: React.FC = () => {
                                         checked={filterFavorites}
                                         onChange={() => setFilterFavorites(!filterFavorites)}
                               />
+                              <p>FAVORITOS: {favorites.size -1}</p>
                               <p>RESULTADOS: {filteredResults.length}</p>
                               {loading && <p>Loading...</p>}
                               {error && <p>Error: {error.message}</p>}
