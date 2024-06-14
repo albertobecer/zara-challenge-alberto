@@ -18,6 +18,18 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.dark-mode { 
+          background-color: #fff; 
+          filter: invert(1) 
+          hue-rotate(180deg);
+}
+.aux-dark-mode {
+          filter: invert(1) hue-rotate(180deg);
+}
+.hidden  {
+          display:none
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
