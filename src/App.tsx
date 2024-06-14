@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar'; 
-import Character from './components/Character';
-import Characters from './components/Characters';
+import Character from './components/pages/Character';
+import Characters from './components/pages/Characters';
 import './App.css';
 import { useTheme } from './services/ThemeContext';
 

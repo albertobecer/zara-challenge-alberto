@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useTheme } from '../services/ThemeContext';
+import { useTheme } from '../../services/ThemeContext';
 
 const Character: React.FC = () => {
   const { id } = useParams<{ id: string }>();
