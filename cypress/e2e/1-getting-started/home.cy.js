@@ -3,6 +3,6 @@
 describe('Home marvell', () => {
           it('Home marvell load', () => {
             cy.visit('/')
-            cy.get('.read-the-docs').should('have.text', 'Click on the Vite and React logos to learn more')
+            cy.get('h1').should('have.text', 'Characters')
           })
  })
