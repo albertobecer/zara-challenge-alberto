@@ -1,15 +1,14 @@
-section {
+#characters {
           padding: 20px; 
-
 }
 
-ul.characters {
+#characters ul{
           display: flex;
           flex-wrap: wrap;
           padding: 0;
  }
  
- ul.characters li {
+ #characters ul li {
           list-style: none;
  }
 

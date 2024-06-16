@@ -63,11 +63,11 @@ const Characters: React.FC = () => {
           return (
                     <>
                               {loading && <Loading />}
-                              <section>
+                              <section id="characters">
                                         <SearchBar q={q} setQ={setQ} filteredResultsLength={filteredResults.length} />
                                         {error && <p>Error: {error.message}</p>}
                                         <br />
-                                        <ul className="characters">
+                                        <ul>
                                                   {filteredResults.map((character: Character) => (
                                                             <li key={character.id}>
                                                                       <ResultCharacter key={character.id} character={character} toggleFavorite={toggleFavorite} favorites={favorites} />

@@ -1,0 +1,12 @@
+#character {
+          background-color: var(--secondary-color); 
+}
+
+#character h1 {
+          color: white;
+          text-transform: uppercase;
+}
+
+#character img {
+          width: 100%;
+}
