@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTheme } from "../services/ThemeContext";
 import lightIcon from "/light.svg";
 import darkIcon from "/dark.svg";
@@ -47,8 +47,7 @@ const Navbar: React.FC = () => {
                                                   </button>
                                         </div>
                                         <div>
-                                                  <Link to="/">
-                                                            <button
+                                                  <button
                                                                       type="button"
                                                                       aria-label="Use Favorites"
                                                                       onClick={() => setFilterFavorites(!filterFavorites)}
@@ -58,8 +57,7 @@ const Navbar: React.FC = () => {
                                                                                 alt="Heart icon"
                                                                       />
                                                                       <p>{favorites.size}</p>
-                                                            </button>
-                                                  </Link>
+                                                  </button>
                                         </div>
                               </div>
                     </nav>

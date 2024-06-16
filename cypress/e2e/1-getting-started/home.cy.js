@@ -36,7 +36,7 @@ describe('Marvel Characters Page', () => {
               cy.get('div>ul li:first', { timeout: 1000 }).within(() => {
                   cy.contains('Favorite').click();
               });
-              cy.get('input[type="checkbox"]').check({ force: true });
+              cy.get('button[aria-label="Use Favorites"]').click();
               cy.get('div>ul li', { timeout: 10000 }).should('have.length', 1);
           });
       });

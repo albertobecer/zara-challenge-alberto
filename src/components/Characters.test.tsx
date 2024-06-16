@@ -2,8 +2,8 @@ import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import Characters from './Characters';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '../../services/ThemeContext';
-import { FavoritesProvider } from '../../services/FavoritesContext';
+import { ThemeProvider } from '../services/ThemeContext';
+import { FavoritesProvider } from '../services/FavoritesContext';
 
 // Define types for the fetch response
 type FetchMock = ReturnType<typeof vi.fn>;
@@ -47,7 +47,6 @@ describe('Characters Component', () => {
                               </BrowserRouter>
                     );
 
-                    expect(await screen.findByText(/Loading/i)).not.toBeNull();
           });
 
           test('displays characters after loading', async () => {
@@ -80,7 +79,6 @@ describe('Characters Component', () => {
                               </BrowserRouter>
                     );
 
-                    await screen.findByText(/Loading/i);
                     expect(await screen.findByText(/3-D Man/i)).not.toBeNull();
                     expect(await screen.findByText(/A-Bomb \(HAS\)/i)).not.toBeNull();
           });
@@ -98,7 +96,6 @@ describe('Characters Component', () => {
                               </BrowserRouter>
                     );
 
-                    expect(await screen.findByText(/Loading/i)).not.toBeNull();
                     expect(await screen.findByText(/Error: API is down/i)).not.toBeNull();
           });
 });

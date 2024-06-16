@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
-import { useFavorites } from '../../services/FavoritesContext';
+import useFetch from "../hooks/useFetch";
+import { useFavorites } from '../services/FavoritesContext';
 import './Characters.css';
 import { Link } from 'react-router-dom';
+import Loading from './Loading.tsx';
+import SearchBar from './SearchBar.tsx'
 
 interface Character {
           id: number;
@@ -22,7 +24,7 @@ const Characters: React.FC = () => {
           const [params, setParams] = useState<Record<string, string>>({});
           const [filteredResults, setFilteredResults] = useState<Character[]>([]);
 
-          const { filterFavorites, setFilterFavorites } = useFavorites();
+          const { filterFavorites} = useFavorites();
 
           const { loading, error, data } = useFetch<ApiResponse>(VITE_ENDPOINT_CHARACTERS, params);
 
@@ -54,15 +56,9 @@ const Characters: React.FC = () => {
 
           return (
                     <>
-                              <input
-                                        type="search"
-                                        name="search-form"
-                                        placeholder="Buscar..."
-                                        value={q}
-                                        onChange={(e) => setQ(e.target.value)}
-                              />
-                              <p>RESULTADOS: {filteredResults.length}</p>
-                              {loading && <p>Loading...</p>}
+                              {loading && <Loading />}
+                              <SearchBar q={q} setQ={setQ} />
+                              <p>{filteredResults.length} RESULTS</p>
                               {error && <p>Error: {error.message}</p>}
                               <br />
                               <ul>

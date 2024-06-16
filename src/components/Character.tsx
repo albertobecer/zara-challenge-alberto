@@ -1,7 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useTheme } from '../../services/ThemeContext';
-import { useFavorites } from '../../services/FavoritesContext';
+import { useTheme } from '../services/ThemeContext';
+import { useFavorites } from '../services/FavoritesContext';
+import { Link } from "react-router-dom";
 
 const Character: React.FC = () => {
           const { id } = useParams<{ id: string }>() ?? { id: '' };
@@ -21,6 +22,7 @@ const Character: React.FC = () => {
           return (
                     <>
                               <h1>{character.name}</h1>
+                              <Link to="/">Volver</Link>
                               <button onClick={() => toggleFavorite(character)}>
                                         {favoriteCharacter ? 'Unfavorite' : 'Favorite'}
                               </button>
