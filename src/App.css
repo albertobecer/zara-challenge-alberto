@@ -14,5 +14,7 @@ body {
           display:none
 }
 button {
-          cursor: pointer
+          cursor: pointer;
+          border: 0;
+          background-color: transparent;
 }

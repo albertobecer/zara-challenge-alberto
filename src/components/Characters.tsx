@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { useFavorites } from '../services/FavoritesContext';
 import './Characters.css';
-import { Link } from 'react-router-dom';
 import Loading from './Loading.tsx';
 import SearchBar from './SearchBar.tsx'
+import ResultCharacter from './ResultCharacter.tsx';
 
 interface Character {
           id: number;
           name: string;
-          imageUrl: string;
+          thumbnail: {
+                    path: string;
+                    extension: string;
+          };
 }
 
 interface ApiResponse {
@@ -50,28 +53,28 @@ const Characters: React.FC = () => {
                     }
           }, [data, q, filterFavorites, favorites]);
 
-          const searchFavorites = (items: Character[], query: string): Character[] => {
-                    return items.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
-          };
+        const searchFavorites = (items: Character[], query: string): Character[] => {
+          return items.filter(item => {
+            const { name, thumbnail } = item;
+            return name.toLowerCase().includes(query.toLowerCase()) && thumbnail;
+          });
+        };
 
           return (
                     <>
                               {loading && <Loading />}
-                              <SearchBar q={q} setQ={setQ} />
-                              <p>{filteredResults.length} RESULTS</p>
-                              {error && <p>Error: {error.message}</p>}
-                              <br />
-                              <ul>
-                                        {filteredResults.map((character: Character) => (
-                                                  <li key={character.id}>
-                                                            <Link to={`/character/${character.id}`}>{character.name}</Link>
-                                                            <button onClick={() => toggleFavorite(character)}>
-                                                                      {Array.from(favorites).some(fav => fav.id === character.id) ? 'Unfavorite' : 'Favorite'}
-                                                            </button>
-                                                  </li>
-                                        ))}
-                              </ul>
-
+                              <section>
+                                        <SearchBar q={q} setQ={setQ} filteredResultsLength={filteredResults.length} />
+                                        {error && <p>Error: {error.message}</p>}
+                                        <br />
+                                        <ul className="characters">
+                                                  {filteredResults.map((character: Character) => (
+                                                            <li key={character.id}>
+                                                                      <ResultCharacter key={character.id} character={character} toggleFavorite={toggleFavorite} favorites={favorites} />
+                                                            </li>
+                                                  ))}
+                                        </ul>
+                              </section>
                     </>
           );
 };

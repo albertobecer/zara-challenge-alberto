@@ -4,8 +4,11 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 interface Character {
           id: number;
           name: string;
-          imageUrl: string;
-      }
+          thumbnail: {
+                    path: string;
+                    extension: string;
+          };
+}
 
 interface FavoritesContextType {
     favorites: Set<Character>;

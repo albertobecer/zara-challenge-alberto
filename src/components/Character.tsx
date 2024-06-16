@@ -16,7 +16,10 @@ const Character: React.FC = () => {
           const character = favoriteCharacter || {
                     id: parsedId,
                     name: `Character ${id}`,
-                    imageUrl: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"
+                    thumbnail: {
+                              path: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784",
+                              extension: "jpg",
+                    }
           };
 
           return (
@@ -28,8 +31,8 @@ const Character: React.FC = () => {
                               </button>
                               <img
                                         className={theme === "dark" ? "aux-dark-mode" : ""}
-                                        src="http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"
-                                        alt="Character"
+                                        src={`${character.thumbnail.path}.${character.thumbnail.extension}`} 
+                                        alt={`${character.name} Image Character `}
                               />
                               <br />
                     </>

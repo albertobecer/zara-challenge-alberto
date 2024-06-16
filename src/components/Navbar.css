@@ -5,21 +5,16 @@ nav {
           padding: 15px 15px 10px;
           
 }
-
 nav > div {
           display: flex;
           justify-content: space-between;
 }
-
 nav button {
-          background-color: black;
-          border: 0;
           display: flex;
           align-items: center;
           height: 55px;
           margin: 0 10px
 }
-
 nav button p {
           color: white;
           padding: 5px;

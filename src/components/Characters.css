@@ -1,0 +1,15 @@
+section {
+          padding: 20px; 
+
+}
+
+ul.characters {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0;
+ }
+ 
+ ul.characters li {
+          list-style: none;
+ }
+

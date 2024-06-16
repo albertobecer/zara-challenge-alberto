@@ -12,7 +12,6 @@ const Navbar: React.FC = () => {
           const { theme, setTheme } = useTheme();
           const { filterFavorites, setFilterFavorites } = useFavorites();
           const { favorites } = useFavorites();
-          
           return (
                     <nav className={theme === "dark" ? "aux-dark-mode" : ""}>
                               <Link to="/">
@@ -61,9 +60,6 @@ const Navbar: React.FC = () => {
                                         </div>
                               </div>
                     </nav>
-
-
-
           );
 };
 
