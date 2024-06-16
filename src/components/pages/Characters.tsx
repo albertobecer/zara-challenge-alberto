@@ -19,10 +19,10 @@ const Characters: React.FC = () => {
           const { favorites, toggleFavorite } = useFavorites();
 
           const [q, setQ] = useState<string>("");
-          const [filterFavorites, setFilterFavorites] = useState<boolean>(false);
           const [params, setParams] = useState<Record<string, string>>({});
           const [filteredResults, setFilteredResults] = useState<Character[]>([]);
 
+          const { filterFavorites, setFilterFavorites } = useFavorites();
 
           const { loading, error, data } = useFetch<ApiResponse>(VITE_ENDPOINT_CHARACTERS, params);
 
@@ -61,12 +61,6 @@ const Characters: React.FC = () => {
                                         value={q}
                                         onChange={(e) => setQ(e.target.value)}
                               />
-                              <input
-                                        type="checkbox"
-                                        checked={filterFavorites}
-                                        onChange={() => setFilterFavorites(!filterFavorites)}
-                              />
-                              <p>FAVORITOS: {favorites.size -1}</p>
                               <p>RESULTADOS: {filteredResults.length}</p>
                               {loading && <p>Loading...</p>}
                               {error && <p>Error: {error.message}</p>}

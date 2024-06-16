@@ -2,7 +2,6 @@ body {
           font-size: var(--font-size);
           margin: 0;
 }
-
 .dark-mode { 
           background-color: white;
           filter: invert(1) 
@@ -13,4 +12,7 @@ body {
 }
 .hidden  {
           display:none
+}
+button {
+          cursor: pointer
 }

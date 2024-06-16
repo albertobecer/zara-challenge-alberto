@@ -10,12 +10,15 @@ interface Character {
 interface FavoritesContextType {
     favorites: Set<Character>;
     toggleFavorite: (character: Character) => void;
+    filterFavorites: boolean;
+    setFilterFavorites: (filter: boolean) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [favorites, setFavorites] = useState<Set<Character>>(new Set());
+    const [filterFavorites, setFilterFavorites] = useState<boolean>(false);
 
     const toggleFavorite = (character: Character) => {
         setFavorites((prevFavorites) => {
@@ -31,7 +34,7 @@ export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children 
     };
 
     return (
-        <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
+        <FavoritesContext.Provider value={{ favorites, toggleFavorite, filterFavorites, setFilterFavorites}}>
             {children}
         </FavoritesContext.Provider>
     );

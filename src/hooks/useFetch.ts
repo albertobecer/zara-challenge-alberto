@@ -33,7 +33,7 @@ export default function useFetch<T>(url: string, params: Record<string, string> 
         setError(error); 
         setLoading(false); 
       });
-  }, [url , ...Object.values(params)]);
+  }, [url , params]);
 
   return { data, loading, error };
 }
