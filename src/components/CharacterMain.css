@@ -1,16 +1,25 @@
-#result-character {
+#character-main {
           width: 200px;
           font-size: 8px;
           margin: 0 20px 20px 0;
 }
 
-#result-character .cardimg {
+#character-main .cardimg {
           width: 100%;
           max-height: 159px;
           min-height: 159px;
           object-fit: cover;
 }
 
-#result-character a {
+#character-main a {
           text-decoration: none;
 }
+
+#character-main #character-box {
+          border-top: 4px solid var(--primary-color);
+}
+
+
+
+
+

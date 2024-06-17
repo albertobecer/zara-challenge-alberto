@@ -1,18 +1,25 @@
 #character-box {
           padding: 10px;
           background-color: var(--secondary-color);
+          position: relative;
+          margin-top: -5px;
+          color: white;
+}
+
+#character-box > div {
           display: flex;
           justify-content: space-between;
-          border-top: 4px solid var(--primary-color);
-          margin-top: -3px;
           min-height: 60px;
           align-items: center;
-          position: relative;
 }
 
 #character-box h2 {
           color: white;
           text-transform: uppercase;
+}
+
+#character-box > div a {
+          text-decoration: none;
 }
 
 #character-box::after {
@@ -27,10 +34,35 @@
           border-bottom: 20px solid white;
 }
 
-#character-box > div:hover {
+#character-box:hover {
           background-color: var(--primary-color);
 }
 
-#character-box > div:hover .heart-icon {
+#character-box:hover .heart-icon {
           content: url('/heart-white.svg');
+}
+
+@media  (min-width: 768px) {
+          #character #character-box {
+                    width: 100%;
+                    padding: 0 30px;
+                    display: flex;
+                    justify-content: space-between;
+          }
+          #character #character-box:hover {
+                    background-color: var(--secondary-color);
+          }
+          #character #character-box:hover .heart-icon {
+                    content: none;
+          }
+          #character-box > div {
+                    display: flex;
+                    justify-content: space-between;
+                    height: 100%;
+                    align-items: center;
+                    width: 100%;
+          }
+          #character-box::after {
+                    content: none;
+          }
 }

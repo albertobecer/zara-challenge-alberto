@@ -1,0 +1,47 @@
+#character-comics {
+          padding: 10px;
+}
+
+#character-comics ul {
+          display: flex;
+          padding: 0;
+          overflow-y: scroll;
+}
+
+#character-comics ul li {
+          list-style: none;
+          margin-right: 15px;
+}
+
+#character-comics ul li img {
+          min-width: 200px;
+          max-height: 300px;
+          object-fit: cover;
+          overflow: hidden;
+}
+
+#character-comics ul::-webkit-scrollbar {
+          height: 10px;
+          width: 0px;
+}
+
+#character-comics ul::-webkit-scrollbar-track {
+          background: #f1f1f1;
+}
+
+#character-comics ul::-webkit-scrollbar-thumb {
+          background-color: var(--primary-color);
+          border-radius: 10px;
+          border: 2px solid #f1f1f1;
+}
+
+#character-comics ul::-webkit-scrollbar-thumb:hover {
+          background: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+          #character-comics {
+                    margin: 0 auto;
+                    max-width: 1200px;
+          }
+}

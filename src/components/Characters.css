@@ -2,7 +2,7 @@
           padding: 20px; 
 }
 
-#characters ul{
+#characters ul {
           display: flex;
           flex-wrap: wrap;
           padding: 0;

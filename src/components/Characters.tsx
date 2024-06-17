@@ -4,7 +4,7 @@ import { useFavorites } from '../services/FavoritesContext';
 import './Characters.css';
 import Loading from './Loading.tsx';
 import SearchBar from './SearchBar.tsx'
-import ResultCharacter from './ResultCharacter.tsx';
+import CharacterMain from './CharacterMain.tsx';
 
 interface Character {
           id: number;
@@ -70,7 +70,7 @@ const Characters: React.FC = () => {
                                         <ul>
                                                   {filteredResults.map((character: Character) => (
                                                             <li key={character.id}>
-                                                                      <ResultCharacter key={character.id} character={character} toggleFavorite={toggleFavorite} favorites={favorites} />
+                                                                      <CharacterMain key={character.id} character={character} toggleFavorite={toggleFavorite} favorites={favorites} />
                                                             </li>
                                                   ))}
                                         </ul>
