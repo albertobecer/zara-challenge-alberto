@@ -10,6 +10,7 @@ interface Character {
           };
 }
 
+
 interface FavoritesContextType {
     favorites: Set<Character>;
     toggleFavorite: (character: Character) => void;

@@ -1,0 +1,36 @@
+#character-box {
+          padding: 10px;
+          background-color: var(--secondary-color);
+          display: flex;
+          justify-content: space-between;
+          border-top: 4px solid var(--primary-color);
+          margin-top: -3px;
+          min-height: 60px;
+          align-items: center;
+          position: relative;
+}
+
+#character-box h2 {
+          color: white;
+          text-transform: uppercase;
+}
+
+#character-box::after {
+          content: '';
+          position: absolute;
+          bottom: 0px;
+          right: 0;
+          height: 0;
+          border-left: 20px solid transparent;
+          border-right: 0px solid transparent;
+          border-top: 0px solid white;
+          border-bottom: 20px solid white;
+}
+
+#character-box > div:hover {
+          background-color: var(--primary-color);
+}
+
+#character-box > div:hover .heart-icon {
+          content: url('/heart-white.svg');
+}

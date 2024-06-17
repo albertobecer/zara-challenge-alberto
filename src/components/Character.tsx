@@ -6,6 +6,7 @@ import useFetch from "../hooks/useFetch";
 import Loading from './Loading.tsx';
 import "./Character.css";
 import ButtonFavorite from './ButtonFavorite';
+import CharacterBox from './CharacterBox';
 
 interface CharacterData {
   results: Array<{
@@ -40,9 +41,7 @@ const Character: React.FC = () => {
                                                                       src={`${infoCharacter.data.results[0].thumbnail.path}.${infoCharacter.data.results[0].thumbnail.extension}`}
                                                                       alt={`${infoCharacter.data.results[0].name} Character `}
                                                             />
-                                                            <h1>{infoCharacter.data.results[0].name}</h1>
-                                                            <ButtonFavorite character={infoCharacter.data.results[0]} favorites={favorites} toggleFavorite={toggleFavorite} />
-                                                            <br />
+                                                            <CharacterBox character={infoCharacter.data.results[0]} favorites={favorites} toggleFavorite={toggleFavorite} />
                                                   </>
                                         )}
                               </section>
