@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '../services/ThemeContext';
 import { FavoritesProvider } from '../services/FavoritesContext';
 
-// Define types for the fetch response
 type FetchMock = ReturnType<typeof vi.fn>;
 
 interface FetchResponse {

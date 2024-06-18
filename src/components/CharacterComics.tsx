@@ -34,12 +34,12 @@ const CharacterComics: React.FC<ComicsProps> = ({ characterid }) => {
                               <div id="character-comics">
                                         <h3>COMICS</h3>
                                         <ul>
-                                                  {infoCharacter.data && infoCharacter.data.results && infoCharacter.data.results.map((comic: Comic, index: number) => (
-                                                            <li key={index}>
-                                                                      <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
-                                                                      <h4>{comic.title}</h4>
-                                                            </li>
-                                                  ))}
+                                                {infoCharacter.data?.results?.map((comic: Comic) => (
+                                                    <li key={comic.id}>
+                                                        <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
+                                                        <h4>{comic.title}</h4>
+                                                    </li>
+                                                ))}
                                         </ul>
                               </div>
                     </>
