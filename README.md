@@ -1,5 +1,9 @@
 # Zara Challenge
 
+<kbd><img src="https://jorgebenitezlopez.com/github/marvel.png"></kbd>
+<img src="https://img.shields.io/static/v1?label=JS&message=TypeScript&color=blue">
+
+
 # Init
 
 - npm install
@@ -33,7 +37,7 @@
 - VIte
 - Typescript
 - Hooks (useFetch y useContext))
-- Testing unitarios (Vite test) y  e2e (Cypress)
+- Testing unitarios (Vite test) y e2e (Cypress)
 - Accesibilidad al 100%
 - Sin errores en la consola
 
@@ -43,7 +47,11 @@
 
 # TODO
 
+- Unificar los Tipos de TS
+- Más Test e implementar TDD 
 - SASS
 - UseMemo
 - React query
 - Redux
+- Ajustar el cambio de color
+- Optimizar las variables del .env
