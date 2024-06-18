@@ -6,7 +6,6 @@ import './App.css';
 import { useTheme } from './services/ThemeContext';
 
 function App() {
-  const vitevar = import.meta.env.VITE_VAR;
   const { theme } = useTheme();
 
   return (
@@ -16,7 +15,6 @@ function App() {
             <Route path="/" element={<Characters />} />
             <Route path="/character/:id" element={<Character />} />
           </Routes>
-        {vitevar}
       </div>
   );
 }

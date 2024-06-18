@@ -20,7 +20,10 @@ WORKDIR /usr/src/app
 # Create a stage for installing production dependecies.
 FROM base as deps
 
-ARG VITE_VAR
+ARG VITE_ENDPOINT_CHARACTERS
+ARG VITE_ENDPOINT_CHARACTER
+ARG VITE_ENDPOINT_SERIES
+ARG VITE_ENDPOINT_KEY
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
@@ -35,7 +38,10 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 # Create a stage for building the application.
 FROM deps as build
 
-ARG VITE_VAR
+ARG VITE_ENDPOINT_CHARACTERS
+ARG VITE_ENDPOINT_CHARACTER
+ARG VITE_ENDPOINT_SERIES
+ARG VITE_ENDPOINT_KEY
 
 # Download additional development dependencies before building, as some projects require
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
@@ -56,8 +62,15 @@ FROM base as final
 
 # Use production node environment by default.
 ENV NODE_ENV production
-ARG VITE_VAR
-ENV VITE_VAR=${VITE_VAR}
+ARG VITE_ENDPOINT_CHARACTERS
+ARG VITE_ENDPOINT_CHARACTER
+ARG VITE_ENDPOINT_SERIES
+ARG VITE_ENDPOINT_KEY
+
+ENV VITE_ENDPOINT_CHARACTERS=${VITE_ENDPOINT_CHARACTERS}    
+ENV VITE_ENDPOINT_CHARACTER=${VITE_ENDPOINT_CHARACTER}
+ENV VITE_ENDPOINT_SERIES=${VITE_ENDPOINT_SERIES}
+ENV VITE_ENDPOINT_KEY=${VITE_ENDPOINT_KEY}
 
 # Run the application as a non-root user.
 USER node
