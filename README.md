@@ -1,30 +1,49 @@
-# React + TypeScript + Vite
+# Zara Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Init
 
-Currently, two official plugins are available:
+- npm install
+- npm run dev (Para desarrollo)
+- npm run build && npm run preview (Modo producción)
+- npm run testvite (Test unitarios)
+- npm run testcypress (Test e2e)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Despliegue en producción
 
-## Expanding the ESLint configuration
+- Imagen de Docker: https://hub.docker.com/repository/docker/signados/zara-challenge-server/general
+- Despliegue en servidor: https://zara-challenge-server-arm64-18.onrender.com/character/1017100
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+# Rutas
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+| URL path | Método | Descripción | Funcionalidades |
+|----------|--------|--------------|-----------|
+| / | GET | Buscador de personajes | Listado de personajes, buscador con contador de resultados y filtro de favoritos |
+| /character/{id} | GET | Información y comics del personaje  | Información detallada del personaje y opción de hacerlo favorito ||
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Características
+
+- Responsive
+- Movile First
+- Variables globales de CSS
+- HTML semántico
+- Flex
+- SPA
+- Atomic Design
+- VIte
+- Typescript
+- Hooks (useFetch y useContext))
+- Testing unitarios (Vite test) y  e2e (Cypress)
+- Accesibilidad al 100%
+- Sin errores en la consola
+
+# Extras
+
+- Modo oscuro
+
+# TODO
+
+- SASS
+- UseMemo
+- React query
+- Redux
