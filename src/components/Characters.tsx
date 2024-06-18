@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { useFavorites } from '../services/FavoritesContext';
 import './Characters.css';
-import Loading from './Loading.tsx';
-import SearchBar from './SearchBar.tsx'
-import CharacterMain from './CharacterMain.tsx';
+import Loading from './Loading';
+import SearchBar from './SearchBar';
+import CharacterMain from './CharacterMain';
 
 interface Character {
           id: number;
@@ -16,18 +16,16 @@ interface Character {
 }
 
 interface ApiResponse {
-          [x: string]: Character[] | null;
+          results: Character[];
 }
 
 const Characters: React.FC = () => {
           const VITE_ENDPOINT_CHARACTERS = import.meta.env.VITE_ENDPOINT_CHARACTERS as string;
-          const { favorites, toggleFavorite } = useFavorites();
+          const { favorites, toggleFavorite, filterFavorites } = useFavorites();
 
           const [q, setQ] = useState<string>("");
           const [params, setParams] = useState<Record<string, string>>({});
           const [filteredResults, setFilteredResults] = useState<Character[]>([]);
-
-          const { filterFavorites} = useFavorites();
 
           const { loading, error, data } = useFetch<ApiResponse>(VITE_ENDPOINT_CHARACTERS, params);
 
@@ -45,20 +43,21 @@ const Characters: React.FC = () => {
                               if (filterFavorites) {
                                         results = results.filter(character => Array.from(favorites).some(fav => fav.id === character.id));
                               }
-                              setFilteredResults(searchFavorites(results, q));
+                              setFilteredResults(results);
                     } else if (filterFavorites) {
-                              setFilteredResults(searchFavorites(Array.from(favorites), q));
-                    } else {
-                              setFilteredResults([]);
+                              setFilteredResults(Array.from(favorites));
+                    } else if (!q) {
+                              setFilteredResults(data?.results || []);
                     }
           }, [data, q, filterFavorites, favorites]);
 
-        const searchFavorites = (items: Character[], query: string): Character[] => {
-          return items.filter(item => {
-            const { name, thumbnail } = item;
-            return name.toLowerCase().includes(query.toLowerCase()) && thumbnail;
-          });
-        };
+          useEffect(() => {
+                    if (!q && !filterFavorites) {
+                              setFilteredResults(data?.results || []);
+                    } else if (!q && filterFavorites) {
+                              setFilteredResults(Array.from(favorites));
+                    }
+          }, [q, filterFavorites, data, favorites]);
 
           return (
                     <>
@@ -67,6 +66,7 @@ const Characters: React.FC = () => {
                                         <SearchBar q={q} setQ={setQ} filteredResultsLength={filteredResults.length} />
                                         {error && <p>Error: {error.message}</p>}
                                         <br />
+                                        {filterFavorites && <h1>FAVORITES</h1>}
                                         <ul>
                                                   {filteredResults.map((character: Character) => (
                                                             <li key={character.id}>
