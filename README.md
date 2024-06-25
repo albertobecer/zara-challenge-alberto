@@ -55,3 +55,4 @@
 - Redux
 - Ajustar el cambio de color
 - Optimizar las variables del .env
+- Implementar Function debunce para mejorar la usabilidad
